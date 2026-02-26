@@ -33,11 +33,8 @@ O módulo `vga_sync` utiliza dois contadores principais:
 - `v_count` → conta linhas (0–524)
 
 ## Área Visível
-
-```verilog
 assign display = (h_count < H_VISIBLE) &&
                  (v_count < V_VISIBLE);
-```verilog
 
 🔹 Coordenadas do Pixel
 assign pixel_x = h_count;
