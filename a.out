@@ -1,0 +1,731 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_000002b4270fd490 .scope module, "vga_sync_tb" "vga_sync_tb" 2 29;
+ .timescale -12 -12;
+P_000002b42712a670 .param/real "clock_esperado" 1 2 37, Cr<m64b3333333333400gfc6>; value=25.1750
+v000002b42718dba0_0 .var "clk", 0 0;
+v000002b42718d240_0 .net "display", 0 0, L_000002b4271026b0;  1 drivers
+v000002b42718e1e0_0 .net "hSync", 0 0, v000002b42718e0a0_0;  1 drivers
+v000002b42718d740_0 .net "pixel_x", 9 0, L_000002b427101b50;  1 drivers
+v000002b42718e280_0 .net "pixel_y", 9 0, L_000002b427101bc0;  1 drivers
+v000002b42718ce80_0 .var "rst", 0 0;
+v000002b42718dc40_0 .net "vSync", 0 0, v000002b42718e140_0;  1 drivers
+S_000002b427104600 .scope task, "Teste_HFRONT" "Teste_HFRONT" 2 162, 2 162 0, S_000002b4270fd490;
+ .timescale -12 -12;
+v000002b427104430_0 .var/real "erro", 0 0;
+v000002b4271035d0_0 .var/real "esperado", 0 0;
+v000002b4271037b0_0 .var "t1", 63 0;
+v000002b427103530_0 .var "t2", 63 0;
+v000002b427104390_0 .var/real "tempo", 0 0;
+E_000002b42712a4f0 .event posedge, v000002b42718cca0_0;
+E_000002b42712a970 .event anyedge, v000002b42718db00_0;
+TD_vga_sync_tb.Teste_HFRONT ;
+    %vpi_call 2 168 "$display", "\012==== Tempo H_FRONT VESA ====" {0 0 0};
+    %pushi/real 1689465651, 4070; load=25.1750
+    %pushi/real 838861, 4048; load=25.1750
+    %add/wr;
+    %pushi/vec4 16, 0, 32;
+    %store/vec4 v000002b42718e960_0, 0, 32;
+    %store/real v000002b42718e6e0_0;
+    %callf/real TD_vga_sync_tb.tempo_esperado, S_000002b42718f1a0;
+    %store/real v000002b4271035d0_0;
+T_0.0 ;
+    %load/vec4 v000002b42718db00_0;
+    %pad/u 32;
+    %pushi/vec4 640, 0, 32;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %cmpi/ne 1, 0, 1;
+    %jmp/0xz T_0.1, 6;
+    %wait E_000002b42712a970;
+    %jmp T_0.0;
+T_0.1 ;
+    %wait E_000002b42712a4f0;
+    %vpi_func 2 176 "$time" 64 {0 0 0};
+    %store/vec4 v000002b4271037b0_0, 0, 64;
+T_0.2 ;
+    %load/vec4 v000002b42718db00_0;
+    %pad/u 32;
+    %pushi/vec4 656, 0, 32;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %cmpi/ne 1, 0, 1;
+    %jmp/0xz T_0.3, 6;
+    %wait E_000002b42712a970;
+    %jmp T_0.2;
+T_0.3 ;
+    %wait E_000002b42712a4f0;
+    %vpi_func 2 181 "$time" 64 {0 0 0};
+    %store/vec4 v000002b427103530_0, 0, 64;
+    %load/vec4 v000002b427103530_0;
+    %load/vec4 v000002b4271037b0_0;
+    %sub;
+    %cvt/rv;
+    %pushi/real 2097152000, 4075; load=1000.00
+    %div/wr;
+    %store/real v000002b427104390_0;
+    %load/real v000002b427104390_0;
+    %load/real v000002b4271035d0_0;
+    %sub/wr;
+    %load/real v000002b4271035d0_0;
+    %div/wr;
+    %pushi/real 1677721600, 4072; load=100.000
+    %mul/wr;
+    %store/real v000002b427104430_0;
+    %load/real v000002b427104430_0;
+    %store/real v000002b42718da60_0;
+    %callf/real TD_vga_sync_tb.abs_real, S_000002b42718ee80;
+    %load/real v000002b427104430_0;
+    %store/real v000002b42718da60_0;
+    %callf/real TD_vga_sync_tb.abs_real, S_000002b42718ee80;
+    %pushi/real 1073741824, 4065; load=0.500000
+    %cmp/wr;
+    %flag_or 5, 4;
+    %flag_mov 8, 5;
+    %jmp/0 T_0.4, 8;
+    %pushi/vec4 23375, 0, 32; draw_string_vec4
+    %pushi/vec4 19293, 0, 16; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %jmp/1 T_0.5, 8;
+T_0.4 ; End of true expr.
+    %pushi/vec4 1531334482, 0, 32; draw_string_vec4
+    %pushi/vec4 16733, 0, 16; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %jmp/0 T_0.5, 8;
+ ; End of false expr.
+    %blend;
+T_0.5;
+    %vpi_call 2 186 "$display", "Tempo H_FRONT: %f ns | Erro: %0.3f%% | %s", v000002b427104390_0, W<0,r>, S<0,vec4,u48> {1 1 0};
+    %end;
+S_000002b42710a420 .scope task, "Teste_H_SYNC" "Teste_H_SYNC" 2 192, 2 192 0, S_000002b4270fd490;
+ .timescale -12 -12;
+v000002b427103990_0 .var/real "erro", 0 0;
+v000002b427103710_0 .var/real "esperado", 0 0;
+v000002b427103cb0_0 .var "t1", 63 0;
+v000002b4271038f0_0 .var "t2", 63 0;
+v000002b4271041b0_0 .var/real "tempo", 0 0;
+TD_vga_sync_tb.Teste_H_SYNC ;
+    %vpi_call 2 198 "$display", "\012==== Tempo H_SYNC VESA ====" {0 0 0};
+    %pushi/real 1689465651, 4070; load=25.1750
+    %pushi/real 838861, 4048; load=25.1750
+    %add/wr;
+    %pushi/vec4 96, 0, 32;
+    %store/vec4 v000002b42718e960_0, 0, 32;
+    %store/real v000002b42718e6e0_0;
+    %callf/real TD_vga_sync_tb.tempo_esperado, S_000002b42718f1a0;
+    %store/real v000002b427103710_0;
+T_1.6 ;
+    %load/vec4 v000002b42718db00_0;
+    %pad/u 32;
+    %pushi/vec4 656, 0, 32;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %cmpi/ne 1, 0, 1;
+    %jmp/0xz T_1.7, 6;
+    %wait E_000002b42712a970;
+    %jmp T_1.6;
+T_1.7 ;
+    %wait E_000002b42712a4f0;
+    %vpi_func 2 206 "$time" 64 {0 0 0};
+    %store/vec4 v000002b427103cb0_0, 0, 64;
+T_1.8 ;
+    %load/vec4 v000002b42718db00_0;
+    %pad/u 32;
+    %pushi/vec4 752, 0, 32;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %cmpi/ne 1, 0, 1;
+    %jmp/0xz T_1.9, 6;
+    %wait E_000002b42712a970;
+    %jmp T_1.8;
+T_1.9 ;
+    %wait E_000002b42712a4f0;
+    %vpi_func 2 211 "$time" 64 {0 0 0};
+    %store/vec4 v000002b4271038f0_0, 0, 64;
+    %load/vec4 v000002b4271038f0_0;
+    %load/vec4 v000002b427103cb0_0;
+    %sub;
+    %cvt/rv;
+    %pushi/real 2097152000, 4075; load=1000.00
+    %div/wr;
+    %store/real v000002b4271041b0_0;
+    %load/real v000002b4271041b0_0;
+    %load/real v000002b427103710_0;
+    %sub/wr;
+    %load/real v000002b427103710_0;
+    %div/wr;
+    %pushi/real 1677721600, 4072; load=100.000
+    %mul/wr;
+    %store/real v000002b427103990_0;
+    %load/real v000002b427103990_0;
+    %store/real v000002b42718da60_0;
+    %callf/real TD_vga_sync_tb.abs_real, S_000002b42718ee80;
+    %load/real v000002b427103990_0;
+    %store/real v000002b42718da60_0;
+    %callf/real TD_vga_sync_tb.abs_real, S_000002b42718ee80;
+    %pushi/real 1073741824, 4065; load=0.500000
+    %cmp/wr;
+    %flag_or 5, 4;
+    %flag_mov 8, 5;
+    %jmp/0 T_1.10, 8;
+    %pushi/vec4 23375, 0, 32; draw_string_vec4
+    %pushi/vec4 19293, 0, 16; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %jmp/1 T_1.11, 8;
+T_1.10 ; End of true expr.
+    %pushi/vec4 1531334482, 0, 32; draw_string_vec4
+    %pushi/vec4 16733, 0, 16; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %jmp/0 T_1.11, 8;
+ ; End of false expr.
+    %blend;
+T_1.11;
+    %vpi_call 2 216 "$display", "Tempo H_SYNC: %f ns | Erro: %0.3f%% | %s", v000002b4271041b0_0, W<0,r>, S<0,vec4,u48> {1 1 0};
+    %end;
+S_000002b42710a5b0 .scope task, "Teste_H_VISIBLE" "Teste_H_VISIBLE" 2 138, 2 138 0, S_000002b4270fd490;
+ .timescale -12 -12;
+v000002b427103d50_0 .var/real "erro", 0 0;
+v000002b427103fd0_0 .var/real "esperado", 0 0;
+v000002b427104110_0 .var "t1", 63 0;
+v000002b427103ad0_0 .var "t2", 63 0;
+v000002b427103e90_0 .var/real "tempo", 0 0;
+TD_vga_sync_tb.Teste_H_VISIBLE ;
+    %vpi_call 2 143 "$display", "\012==== Tempo H_VISIBLE VESA ====" {0 0 0};
+    %pushi/real 1689465651, 4070; load=25.1750
+    %pushi/real 838861, 4048; load=25.1750
+    %add/wr;
+    %pushi/vec4 640, 0, 32;
+    %store/vec4 v000002b42718e960_0, 0, 32;
+    %store/real v000002b42718e6e0_0;
+    %callf/real TD_vga_sync_tb.tempo_esperado, S_000002b42718f1a0;
+    %store/real v000002b427103fd0_0;
+T_2.12 ;
+    %load/vec4 v000002b42718db00_0;
+    %pad/u 32;
+    %pushi/vec4 0, 0, 32;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %cmpi/ne 1, 0, 1;
+    %jmp/0xz T_2.13, 6;
+    %wait E_000002b42712a970;
+    %jmp T_2.12;
+T_2.13 ;
+    %wait E_000002b42712a4f0;
+    %vpi_func 2 149 "$time" 64 {0 0 0};
+    %store/vec4 v000002b427104110_0, 0, 64;
+T_2.14 ;
+    %load/vec4 v000002b42718db00_0;
+    %pad/u 32;
+    %pushi/vec4 640, 0, 32;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %cmpi/ne 1, 0, 1;
+    %jmp/0xz T_2.15, 6;
+    %wait E_000002b42712a970;
+    %jmp T_2.14;
+T_2.15 ;
+    %wait E_000002b42712a4f0;
+    %vpi_func 2 154 "$time" 64 {0 0 0};
+    %store/vec4 v000002b427103ad0_0, 0, 64;
+    %load/vec4 v000002b427103ad0_0;
+    %load/vec4 v000002b427104110_0;
+    %sub;
+    %cvt/rv;
+    %pushi/real 2097152000, 4075; load=1000.00
+    %div/wr;
+    %store/real v000002b427103e90_0;
+    %load/real v000002b427103e90_0;
+    %load/real v000002b427103fd0_0;
+    %sub/wr;
+    %load/real v000002b427103fd0_0;
+    %div/wr;
+    %pushi/real 1677721600, 4072; load=100.000
+    %mul/wr;
+    %store/real v000002b427103d50_0;
+    %load/real v000002b427103d50_0;
+    %store/real v000002b42718da60_0;
+    %callf/real TD_vga_sync_tb.abs_real, S_000002b42718ee80;
+    %load/real v000002b427103d50_0;
+    %store/real v000002b42718da60_0;
+    %callf/real TD_vga_sync_tb.abs_real, S_000002b42718ee80;
+    %pushi/real 1073741824, 4065; load=0.500000
+    %cmp/wr;
+    %flag_or 5, 4;
+    %flag_mov 8, 5;
+    %jmp/0 T_2.16, 8;
+    %pushi/vec4 23375, 0, 32; draw_string_vec4
+    %pushi/vec4 19293, 0, 16; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %jmp/1 T_2.17, 8;
+T_2.16 ; End of true expr.
+    %pushi/vec4 1531334482, 0, 32; draw_string_vec4
+    %pushi/vec4 16733, 0, 16; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %jmp/0 T_2.17, 8;
+ ; End of false expr.
+    %blend;
+T_2.17;
+    %vpi_call 2 158 "$display", "Tempo H_VISIBLE: %f ns | Erro: %0.3f%% | %s", v000002b427103e90_0, W<0,r>, S<0,vec4,u48> {1 1 0};
+    %end;
+S_000002b4270d2d40 .scope task, "Teste_vesa_Hsynk" "Teste_vesa_Hsynk" 2 86, 2 86 0, S_000002b4270fd490;
+ .timescale -12 -12;
+v000002b427103f30_0 .var/real "erro", 0 0;
+v000002b427104070_0 .var/real "hsync", 0 0;
+v000002b4271042f0_0 .var "t1", 63 0;
+v000002b42718d560_0 .var "t2", 63 0;
+E_000002b42712b3f0 .event posedge, v000002b42718e0a0_0;
+E_000002b42712bd30 .event negedge, v000002b42718e0a0_0;
+TD_vga_sync_tb.Teste_vesa_Hsynk ;
+    %vpi_call 2 90 "$display", "\012==== Tempo Hsynk VESA ====" {0 0 0};
+    %wait E_000002b42712bd30;
+    %vpi_func 2 92 "$time" 64 {0 0 0};
+    %store/vec4 v000002b4271042f0_0, 0, 64;
+    %wait E_000002b42712b3f0;
+    %vpi_func 2 93 "$time" 64 {0 0 0};
+    %store/vec4 v000002b42718d560_0, 0, 64;
+    %load/vec4 v000002b42718d560_0;
+    %load/vec4 v000002b4271042f0_0;
+    %sub;
+    %cvt/rv;
+    %store/real v000002b427104070_0;
+    %load/real v000002b427104070_0;
+    %pushi/vec4 1000, 0, 32;
+    %cvt/rv/s;
+    %div/wr;
+    %store/real v000002b427104070_0;
+    %load/real v000002b427104070_0;
+    %pushi/real 1999173058, 4077; load=3813.12
+    %pushi/real 2348810, 4055; load=3813.12
+    %add/wr;
+    %sub/wr;
+    %pushi/real 1999173058, 4077; load=3813.12
+    %pushi/real 2348810, 4055; load=3813.12
+    %add/wr;
+    %div/wr;
+    %pushi/real 1677721600, 4072; load=100.000
+    %mul/wr;
+    %store/real v000002b427103f30_0;
+    %load/real v000002b427103f30_0;
+    %store/real v000002b42718da60_0;
+    %callf/real TD_vga_sync_tb.abs_real, S_000002b42718ee80;
+    %load/real v000002b427103f30_0;
+    %store/real v000002b42718da60_0;
+    %callf/real TD_vga_sync_tb.abs_real, S_000002b42718ee80;
+    %pushi/real 1073741824, 4065; load=0.500000
+    %cmp/wr;
+    %flag_or 5, 4;
+    %flag_mov 8, 5;
+    %jmp/0 T_3.18, 8;
+    %pushi/vec4 23375, 0, 32; draw_string_vec4
+    %pushi/vec4 19293, 0, 16; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %jmp/1 T_3.19, 8;
+T_3.18 ; End of true expr.
+    %pushi/vec4 1531334482, 0, 32; draw_string_vec4
+    %pushi/vec4 16733, 0, 16; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %jmp/0 T_3.19, 8;
+ ; End of false expr.
+    %blend;
+T_3.19;
+    %vpi_call 2 98 "$display", "Tempo Hsynk: %f ns | Erro: %0.3f%% | %s", v000002b427104070_0, W<0,r>, S<0,vec4,u48> {1 1 0};
+    %end;
+S_000002b4270d2ed0 .scope task, "Teste_vesa_Vsynk" "Teste_vesa_Vsynk" 2 104, 2 104 0, S_000002b4270fd490;
+ .timescale -12 -12;
+v000002b42718cb60_0 .var/real "erro", 0 0;
+v000002b42718e8c0_0 .var "t1", 63 0;
+v000002b42718d920_0 .var "t2", 63 0;
+v000002b42718d7e0_0 .var/real "vsync", 0 0;
+E_000002b42712bcf0 .event posedge, v000002b42718e140_0;
+E_000002b42712bf30 .event negedge, v000002b42718e140_0;
+TD_vga_sync_tb.Teste_vesa_Vsynk ;
+    %vpi_call 2 109 "$display", "\012==== Tempo Vsynk VESA ====" {0 0 0};
+    %wait E_000002b42712bf30;
+    %vpi_func 2 111 "$time" 64 {0 0 0};
+    %store/vec4 v000002b42718e8c0_0, 0, 64;
+    %wait E_000002b42712bcf0;
+    %vpi_func 2 112 "$time" 64 {0 0 0};
+    %store/vec4 v000002b42718d920_0, 0, 64;
+    %load/vec4 v000002b42718d920_0;
+    %load/vec4 v000002b42718e8c0_0;
+    %sub;
+    %cvt/rv;
+    %store/real v000002b42718d7e0_0;
+    %load/real v000002b42718d7e0_0;
+    %pushi/vec4 1000, 0, 32;
+    %cvt/rv/s;
+    %div/wr;
+    %store/real v000002b42718d7e0_0;
+    %load/real v000002b42718d7e0_0;
+    %pushi/vec4 63552, 0, 32;
+    %cvt/rv/s;
+    %sub/wr;
+    %pushi/vec4 63552, 0, 32;
+    %cvt/rv/s;
+    %div/wr;
+    %pushi/real 1677721600, 4072; load=100.000
+    %mul/wr;
+    %store/real v000002b42718cb60_0;
+    %load/real v000002b42718cb60_0;
+    %store/real v000002b42718da60_0;
+    %callf/real TD_vga_sync_tb.abs_real, S_000002b42718ee80;
+    %load/real v000002b42718cb60_0;
+    %store/real v000002b42718da60_0;
+    %callf/real TD_vga_sync_tb.abs_real, S_000002b42718ee80;
+    %pushi/real 1073741824, 4065; load=0.500000
+    %cmp/wr;
+    %flag_or 5, 4;
+    %flag_mov 8, 5;
+    %jmp/0 T_4.20, 8;
+    %pushi/vec4 23375, 0, 32; draw_string_vec4
+    %pushi/vec4 19293, 0, 16; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %jmp/1 T_4.21, 8;
+T_4.20 ; End of true expr.
+    %pushi/vec4 1531334482, 0, 32; draw_string_vec4
+    %pushi/vec4 16733, 0, 16; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %jmp/0 T_4.21, 8;
+ ; End of false expr.
+    %blend;
+T_4.21;
+    %vpi_call 2 117 "$display", "Tempo Vsynk: %f ns | Erro: %0.3f%% | %s", v000002b42718d7e0_0, W<0,r>, S<0,vec4,u48> {1 1 0};
+    %end;
+S_000002b4270d3060 .scope task, "Teste_vesa_clock" "Teste_vesa_clock" 2 68, 2 68 0, S_000002b4270fd490;
+ .timescale -12 -12;
+v000002b42718d6a0_0 .var/real "erro", 0 0;
+v000002b42718d880_0 .var/real "frequencia", 0 0;
+v000002b42718d600_0 .var/real "periodo", 0 0;
+v000002b42718e640_0 .var "t1", 63 0;
+v000002b42718cd40_0 .var "t2", 63 0;
+TD_vga_sync_tb.Teste_vesa_clock ;
+    %vpi_call 2 72 "$display", "\012==== Teste CLOCK VESA ====" {0 0 0};
+    %wait E_000002b42712a4f0;
+    %vpi_func 2 74 "$time" 64 {0 0 0};
+    %store/vec4 v000002b42718e640_0, 0, 64;
+    %wait E_000002b42712a4f0;
+    %vpi_func 2 75 "$time" 64 {0 0 0};
+    %store/vec4 v000002b42718cd40_0, 0, 64;
+    %load/vec4 v000002b42718cd40_0;
+    %load/vec4 v000002b42718e640_0;
+    %sub;
+    %cvt/rv;
+    %store/real v000002b42718d600_0;
+    %pushi/real 2048000000, 4085; load=1.00000e+06
+    %load/real v000002b42718d600_0;
+    %div/wr;
+    %store/real v000002b42718d880_0;
+    %load/real v000002b42718d880_0;
+    %pushi/real 1689465651, 4070; load=25.1750
+    %pushi/real 838861, 4048; load=25.1750
+    %add/wr;
+    %sub/wr;
+    %pushi/real 1689465651, 4070; load=25.1750
+    %pushi/real 838861, 4048; load=25.1750
+    %add/wr;
+    %div/wr;
+    %pushi/real 1677721600, 4072; load=100.000
+    %mul/wr;
+    %store/real v000002b42718d6a0_0;
+    %load/real v000002b42718d6a0_0;
+    %store/real v000002b42718da60_0;
+    %callf/real TD_vga_sync_tb.abs_real, S_000002b42718ee80;
+    %load/real v000002b42718d6a0_0;
+    %store/real v000002b42718da60_0;
+    %callf/real TD_vga_sync_tb.abs_real, S_000002b42718ee80;
+    %pushi/real 1073741824, 4065; load=0.500000
+    %cmp/wr;
+    %flag_or 5, 4;
+    %flag_mov 8, 5;
+    %jmp/0 T_5.22, 8;
+    %pushi/vec4 23375, 0, 32; draw_string_vec4
+    %pushi/vec4 19293, 0, 16; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %jmp/1 T_5.23, 8;
+T_5.22 ; End of true expr.
+    %pushi/vec4 1531334482, 0, 32; draw_string_vec4
+    %pushi/vec4 16733, 0, 16; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %jmp/0 T_5.23, 8;
+ ; End of false expr.
+    %blend;
+T_5.23;
+    %vpi_call 2 80 "$display", "Pixel clock: %f MHz | Erro: %0.3f%% | %s", v000002b42718d880_0, W<0,r>, S<0,vec4,u48> {1 1 0};
+    %end;
+S_000002b42718ee80 .scope function.real, "abs_real" "abs_real" 2 50, 2 50 0, S_000002b4270fd490;
+ .timescale -12 -12;
+; Variable abs_real is REAL return value of scope S_000002b42718ee80
+v000002b42718da60_0 .var/real "val", 0 0;
+TD_vga_sync_tb.abs_real ;
+    %load/real v000002b42718da60_0;
+    %pushi/real 0, 4065; load=0.00000
+    %cmp/wr;
+    %flag_get/vec4 5;
+    %flag_set/vec4 8;
+    %jmp/1  T_6.24, 8;
+    %load/real v000002b42718da60_0;
+    %jmp/0  T_6.25, 8; End of false expr.
+    %pushi/real 0, 0; load 0.0
+    %load/real v000002b42718da60_0;
+    %sub/wr;
+    %blend/wr;
+    %jmp  T_6.25; End of blend
+T_6.24 ;
+    %pushi/real 0, 0; load 0.0
+    %load/real v000002b42718da60_0;
+    %sub/wr;
+T_6.25 ;
+    %ret/real 0; Assign to abs_real
+    %end;
+S_000002b42718f010 .scope task, "init_system" "init_system" 2 129, 2 129 0, S_000002b4270fd490;
+ .timescale -12 -12;
+TD_vga_sync_tb.init_system ;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000002b42718ce80_0, 0, 1;
+    %delay 1000, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000002b42718ce80_0, 0, 1;
+    %pushi/vec4 1000, 0, 32;
+T_7.26 %dup/vec4;
+    %pushi/vec4 0, 0, 32;
+    %cmp/s;
+    %jmp/1xz T_7.27, 5;
+    %jmp/1 T_7.27, 4;
+    %pushi/vec4 1, 0, 32;
+    %sub;
+    %wait E_000002b42712a4f0;
+    %jmp T_7.26;
+T_7.27 ;
+    %pop/vec4 1;
+    %end;
+S_000002b42718f1a0 .scope function.real, "tempo_esperado" "tempo_esperado" 2 57, 2 57 0, S_000002b4270fd490;
+ .timescale -12 -12;
+v000002b42718e960_0 .var/i "ciclos", 31 0;
+v000002b42718e6e0_0 .var/real "freq_mhz", 0 0;
+v000002b42718e500_0 .var/real "periodo", 0 0;
+; Variable tempo_esperado is REAL return value of scope S_000002b42718f1a0
+TD_vga_sync_tb.tempo_esperado ;
+    %pushi/real 2097152000, 4075; load=1000.00
+    %load/real v000002b42718e6e0_0;
+    %div/wr;
+    %store/real v000002b42718e500_0;
+    %load/vec4 v000002b42718e960_0;
+    %cvt/rv/s;
+    %load/real v000002b42718e500_0;
+    %mul/wr;
+    %ret/real 0; Assign to tempo_esperado
+    %end;
+S_000002b42718f330 .scope module, "uut" "vga_sync" 2 39, 3 1 0, S_000002b4270fd490;
+ .timescale -12 -12;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst";
+    .port_info 2 /OUTPUT 1 "hsync";
+    .port_info 3 /OUTPUT 1 "vsync";
+    .port_info 4 /OUTPUT 1 "display";
+    .port_info 5 /OUTPUT 10 "pixel_x";
+    .port_info 6 /OUTPUT 10 "pixel_y";
+P_000002b42718f4c0 .param/l "H_BACK" 1 3 15, +C4<00000000000000000000000000110000>;
+P_000002b42718f4f8 .param/l "H_FRONT" 1 3 13, +C4<00000000000000000000000000010000>;
+P_000002b42718f530 .param/l "H_SYNC" 1 3 14, +C4<00000000000000000000000001100000>;
+P_000002b42718f568 .param/l "H_TOTAL" 1 3 16, +C4<00000000000000000000001100100000>;
+P_000002b42718f5a0 .param/l "H_VISIBLE" 1 3 12, +C4<00000000000000000000001010000000>;
+P_000002b42718f5d8 .param/l "V_BACK" 1 3 21, +C4<00000000000000000000000000100001>;
+P_000002b42718f610 .param/l "V_FRONT" 1 3 19, +C4<00000000000000000000000000001010>;
+P_000002b42718f648 .param/l "V_SYNC" 1 3 20, +C4<00000000000000000000000000000010>;
+P_000002b42718f680 .param/l "V_TOTAL" 1 3 22, +C4<00000000000000000000001000001101>;
+P_000002b42718f6b8 .param/l "V_VISIBLE" 1 3 18, +C4<00000000000000000000000111100000>;
+L_000002b4271026b0 .functor AND 1, L_000002b42718de20, L_000002b42718dce0, C4<1>, C4<1>;
+L_000002b427101b50 .functor BUFZ 10, v000002b42718db00_0, C4<0000000000>, C4<0000000000>, C4<0000000000>;
+L_000002b427101bc0 .functor BUFZ 10, v000002b42718cc00_0, C4<0000000000>, C4<0000000000>, C4<0000000000>;
+v000002b42718cfc0_0 .net *"_ivl_0", 31 0, L_000002b42718d2e0;  1 drivers
+L_000002b4271c0118 .functor BUFT 1, C4<0000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v000002b42718d420_0 .net *"_ivl_11", 21 0, L_000002b4271c0118;  1 drivers
+L_000002b4271c0160 .functor BUFT 1, C4<00000000000000000000000111100000>, C4<0>, C4<0>, C4<0>;
+v000002b42718dec0_0 .net/2u *"_ivl_12", 31 0, L_000002b4271c0160;  1 drivers
+v000002b42718e780_0 .net *"_ivl_14", 0 0, L_000002b42718dce0;  1 drivers
+L_000002b4271c0088 .functor BUFT 1, C4<0000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v000002b42718e820_0 .net *"_ivl_3", 21 0, L_000002b4271c0088;  1 drivers
+L_000002b4271c00d0 .functor BUFT 1, C4<00000000000000000000001010000000>, C4<0>, C4<0>, C4<0>;
+v000002b42718e000_0 .net/2u *"_ivl_4", 31 0, L_000002b4271c00d0;  1 drivers
+v000002b42718e5a0_0 .net *"_ivl_6", 0 0, L_000002b42718de20;  1 drivers
+v000002b42718cde0_0 .net *"_ivl_8", 31 0, L_000002b42718d060;  1 drivers
+v000002b42718cca0_0 .net "clk", 0 0, v000002b42718dba0_0;  1 drivers
+v000002b42718e460_0 .net "display", 0 0, L_000002b4271026b0;  alias, 1 drivers
+v000002b42718db00_0 .var "h_count", 9 0;
+v000002b42718e0a0_0 .var "hsync", 0 0;
+v000002b42718cac0_0 .net "pixel_x", 9 0, L_000002b427101b50;  alias, 1 drivers
+v000002b42718df60_0 .net "pixel_y", 9 0, L_000002b427101bc0;  alias, 1 drivers
+v000002b42718d9c0_0 .net "rst", 0 0, v000002b42718ce80_0;  1 drivers
+v000002b42718cc00_0 .var "v_count", 9 0;
+v000002b42718e140_0 .var "vsync", 0 0;
+E_000002b42712beb0 .event posedge, v000002b42718d9c0_0, v000002b42718cca0_0;
+L_000002b42718d2e0 .concat [ 10 22 0 0], v000002b42718db00_0, L_000002b4271c0088;
+L_000002b42718de20 .cmp/gt 32, L_000002b4271c00d0, L_000002b42718d2e0;
+L_000002b42718d060 .concat [ 10 22 0 0], v000002b42718cc00_0, L_000002b4271c0118;
+L_000002b42718dce0 .cmp/gt 32, L_000002b4271c0160, L_000002b42718d060;
+    .scope S_000002b42718f330;
+T_9 ;
+    %wait E_000002b42712beb0;
+    %load/vec4 v000002b42718d9c0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_9.0, 8;
+    %pushi/vec4 0, 0, 10;
+    %assign/vec4 v000002b42718db00_0, 0;
+    %pushi/vec4 0, 0, 10;
+    %assign/vec4 v000002b42718cc00_0, 0;
+    %jmp T_9.1;
+T_9.0 ;
+    %load/vec4 v000002b42718db00_0;
+    %pad/u 32;
+    %cmpi/e 799, 0, 32;
+    %jmp/0xz  T_9.2, 4;
+    %pushi/vec4 0, 0, 10;
+    %assign/vec4 v000002b42718db00_0, 0;
+    %load/vec4 v000002b42718cc00_0;
+    %pad/u 32;
+    %cmpi/e 524, 0, 32;
+    %jmp/0xz  T_9.4, 4;
+    %pushi/vec4 0, 0, 10;
+    %assign/vec4 v000002b42718cc00_0, 0;
+    %jmp T_9.5;
+T_9.4 ;
+    %load/vec4 v000002b42718cc00_0;
+    %addi 1, 0, 10;
+    %assign/vec4 v000002b42718cc00_0, 0;
+T_9.5 ;
+    %jmp T_9.3;
+T_9.2 ;
+    %load/vec4 v000002b42718db00_0;
+    %addi 1, 0, 10;
+    %assign/vec4 v000002b42718db00_0, 0;
+T_9.3 ;
+T_9.1 ;
+    %jmp T_9;
+    .thread T_9;
+    .scope S_000002b42718f330;
+T_10 ;
+    %wait E_000002b42712beb0;
+    %load/vec4 v000002b42718d9c0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_10.0, 8;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v000002b42718e0a0_0, 0;
+    %jmp T_10.1;
+T_10.0 ;
+    %load/vec4 v000002b42718db00_0;
+    %pad/u 32;
+    %cmpi/u 656, 0, 32;
+    %flag_inv 5; GE is !LT
+    %flag_get/vec4 5;
+    %jmp/0 T_10.4, 5;
+    %load/vec4 v000002b42718db00_0;
+    %pad/u 32;
+    %cmpi/u 751, 0, 32;
+    %flag_get/vec4 4;
+    %flag_get/vec4 5;
+    %or;
+    %and;
+T_10.4;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_10.2, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v000002b42718e0a0_0, 0;
+    %jmp T_10.3;
+T_10.2 ;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v000002b42718e0a0_0, 0;
+T_10.3 ;
+T_10.1 ;
+    %jmp T_10;
+    .thread T_10;
+    .scope S_000002b42718f330;
+T_11 ;
+    %wait E_000002b42712beb0;
+    %load/vec4 v000002b42718d9c0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_11.0, 8;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v000002b42718e140_0, 0;
+    %jmp T_11.1;
+T_11.0 ;
+    %load/vec4 v000002b42718cc00_0;
+    %pad/u 32;
+    %cmpi/u 490, 0, 32;
+    %flag_inv 5; GE is !LT
+    %flag_get/vec4 5;
+    %jmp/0 T_11.4, 5;
+    %load/vec4 v000002b42718cc00_0;
+    %pad/u 32;
+    %cmpi/u 491, 0, 32;
+    %flag_get/vec4 4;
+    %flag_get/vec4 5;
+    %or;
+    %and;
+T_11.4;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_11.2, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v000002b42718e140_0, 0;
+    %jmp T_11.3;
+T_11.2 ;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v000002b42718e140_0, 0;
+T_11.3 ;
+T_11.1 ;
+    %jmp T_11;
+    .thread T_11;
+    .scope S_000002b4270fd490;
+T_12 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000002b42718dba0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000002b42718ce80_0, 0, 1;
+    %end;
+    .thread T_12;
+    .scope S_000002b4270fd490;
+T_13 ;
+    %delay 19860, 0;
+    %load/vec4 v000002b42718dba0_0;
+    %inv;
+    %store/vec4 v000002b42718dba0_0, 0, 1;
+    %jmp T_13;
+    .thread T_13;
+    .scope S_000002b4270fd490;
+T_14 ;
+    %vpi_call 2 124 "$dumpfile", "vga_sync_tb.vcd" {0 0 0};
+    %vpi_call 2 125 "$dumpvars", 32'sb00000000000000000000000000000000, S_000002b4270fd490 {0 0 0};
+    %end;
+    .thread T_14;
+    .scope S_000002b4270fd490;
+T_15 ;
+    %fork TD_vga_sync_tb.init_system, S_000002b42718f010;
+    %join;
+    %fork TD_vga_sync_tb.Teste_vesa_clock, S_000002b4270d3060;
+    %join;
+    %fork TD_vga_sync_tb.Teste_vesa_Hsynk, S_000002b4270d2d40;
+    %join;
+    %fork TD_vga_sync_tb.Teste_vesa_Vsynk, S_000002b4270d2ed0;
+    %join;
+    %fork TD_vga_sync_tb.Teste_HFRONT, S_000002b427104600;
+    %join;
+    %fork TD_vga_sync_tb.Teste_H_VISIBLE, S_000002b42710a5b0;
+    %join;
+    %fork TD_vga_sync_tb.Teste_H_SYNC, S_000002b42710a420;
+    %join;
+    %delay 800000, 0;
+    %vpi_call 2 231 "$finish" {0 0 0};
+    %end;
+    .thread T_15;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "vga_sync_tb.v";
+    "./vga_sync.v";
